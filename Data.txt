@@ -1,0 +1,5 @@
+One sentence with no more than 10 words and a number.
+Another sentence, on line 2 of this document, with nine words.
+In total, we have 3 results in numeric format, and five results in string format.
+There is no number in this line
+There is one 56 number in this line lets see if this number prints 34
