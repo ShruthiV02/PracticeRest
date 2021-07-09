@@ -4,6 +4,9 @@ The Requirements are as below:
 1.	The rest service should read the Plain text and identify the numbers in it.
 2.	The details : Number position,  Line number and the number should be displayed
 3.	The output should be in json format
+
+
+
 Note:
 I have used spring boot to create the service. Consuming plain/text was not happening. I tried a lot of ways but none of them worked. 
 I developed the functionality where the user can upload a text file in the post request and the rest service will read the text from the file and identify the numbers and other details and will display result in json response.
