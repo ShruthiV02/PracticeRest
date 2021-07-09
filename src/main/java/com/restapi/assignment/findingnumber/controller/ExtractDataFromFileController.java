@@ -39,6 +39,10 @@ public class ExtractDataFromFileController {
 		
 		response = finder.numberLocator(file1);
 		
+		if (response.isEmpty()) {
+			throw new ExtractNumberFromTextFailedException("The file is not readable");
+		}
+		
 		return response;
 		
 	}
