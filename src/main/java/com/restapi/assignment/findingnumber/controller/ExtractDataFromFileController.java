@@ -38,6 +38,8 @@ public class ExtractDataFromFileController {
 
 		File file1 = new File(Constant.FILE_PATH+fileName);
 		
+		logger.info("File Path: "+Constant.FILE_PATH+fileName);
+		
 		response = finder.numberLocator(file1);
 		
 		if (response.isEmpty()) {
