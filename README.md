@@ -19,10 +19,23 @@ Build Instructions
 4.	Find FindingnumberApplication.java RunAsJava application
 
  
-Go to below link in browser. You can add plug in to chrome if not present. If its already present you get Launch application option. Click on it.
+ Swagger link 
+ http://localhost:8082/v2/api-docs
+ 
+ http://localhost:8082/swagger-ui/#/
+
+ 
+Go to below link in browser. 
+
+You can add plug in to chrome if not present. 
+
+If its already present you get Launch application option. Click on it.
 https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
+
 rest service URI: http://localhost:8082/extractNumericDataFromFileUpload
+
 Select POST
 Go to Body, select form-data, 
-In key enter ‘file’ choose the text file which is provided in the mail.
+In key enter ‘file’ choose the text file (Data.txt).
+
 Hit the send button.
