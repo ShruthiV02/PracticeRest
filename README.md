@@ -12,13 +12,11 @@ I have used spring boot to create the service. Consuming plain/text was not happ
 I developed the functionality where the user can upload a text file in the post request and the rest service will read the text from the file and identify the numbers and other details and will display result in json response.
 
 Build Instructions
-1.	Extract the zip file into you local drive.
-2.	Import the project as existing maven project.
-3.	Open application.properties file to change the directory to desired location. 
+1.	Open application.properties file to change the directory to desired location. 
  
-4.	Update the directory in Constant file.
-5.	I have configured localhost:8082. You can change the port in application.properties file if necessary.
-6.	Find FindingnumberApplication.java RunAsJava application
+2.	Update the directory in Constant file.
+3.	I have configured localhost:8082. You can change the port in application.properties file if necessary.
+4.	Find FindingnumberApplication.java RunAsJava application
 
  
 Go to below link in browser. You can add plug in to chrome if not present. If its already present you get Launch application option. Click on it.
