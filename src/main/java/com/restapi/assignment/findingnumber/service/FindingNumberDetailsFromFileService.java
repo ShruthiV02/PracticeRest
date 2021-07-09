@@ -10,13 +10,17 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.restapi.assignment.findingnumber.exception.FileStorageException;
+import com.restapi.assignment.findingnumber.exception.ExtractNumberFromTextFailedException;
 import com.restapi.assignment.findingnumber.response.ResponseHolder;
 
 @Component
 public class FindingNumberDetailsFromFileService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(FindingNumberDetailsFromFileService.class);
 	
 	private String textReadLineByLine;
 
@@ -26,11 +30,12 @@ public class FindingNumberDetailsFromFileService {
 		
 		try {
 			  File myObj = new File(file.getPath());
-		      Scanner myReader = new Scanner(myObj);
-		      int counter = 0;
+		      Scanner myReader = new Scanner(myObj);     
+		      int lineNumber = 0;
+		      
 		      //Reading text from the uploaded file Line by Line
 		      while (myReader.hasNextLine()) {
-		    	  counter++;
+		    	  lineNumber++;
 		    	ResponseHolder result = new ResponseHolder();
 		        textReadLineByLine = myReader.nextLine();
 		        
@@ -44,19 +49,23 @@ public class FindingNumberDetailsFromFileService {
 				//Creating a local index with the maximun number of words in the sentence
 				 int[] index = new int[numberOfWords];
 				 int i = 0;
+				 
 				 //using regex Mactcher from java util to match the number in the input text
 			        Matcher m = p.matcher(textReadLineByLine);
+			        
 			        while(m.find()) {
-			            System.out.println(m.group());
+			            logger.info(m.group());
 			            if(m.group()!= null) {			            
-			            index[i] = textReadLineByLine.indexOf(m.group());			            
-			            numbDetails.put("Number :"+m.group()+", Line Number : "+counter, "Number Position:"+String.valueOf(index[i]));
+			            index[i] = textReadLineByLine.indexOf(m.group());
+			            logger.info("Text Position:"+index[i]);
+			            numbDetails.put("Number :"+m.group()+", Line Number : "+lineNumber, "Number Position:"+String.valueOf(index[i]));
 			            i++;
 			            }				            
 			        }
+			        
 			    //Setting the Number details to result 
 				if (numbDetails.isEmpty()) {
-					numbDetails.put("No Number found in this line.", "Line Number: " + counter);
+					numbDetails.put("No Number found in this line.", "Line Number: " + lineNumber);
 				}
 			    result.setNumberDetails(numbDetails);
 			    result.setFragment(textReadLineByLine); 
@@ -68,7 +77,7 @@ public class FindingNumberDetailsFromFileService {
 			}
 			 
 		catch (IOException e) {
-			throw new FileStorageException("Could not process the file!", e);
+			throw new ExtractNumberFromTextFailedException("Could not process the file!", e);
 		}	
 		return list;
 	}
